@@ -134,4 +134,55 @@ class Autoloader
     {
         return str_replace(['_', '\\'], DIRECTORY_SEPARATOR, $class) . '.php';
     }
+
+    /**
+     * Checks to see if a class is already loaded
+     * @param  string  $class
+     * @return boolean
+     */
+    public function isLoaded($class)
+    {
+        return class_exists($class) || interface_exists($class) || trait_exists($class);
+    }
+
+    /**
+     * Autoload method to be registered with the spl autoload stack
+     * @param  string  $class
+     * @return void
+     */
+    public function autoload($class)
+    {
+        // is the class already loaded?
+        if ($this->isLoaded($class)) {
+            return;
+        }
+
+        $file = $this->resolveFile($class);
+
+        if ($file !== null) {
+            include $file;
+            return;
+        }
+    }
+
+    /**
+     * Registers this autoloader with the spl autoload stack
+     * @param  boolean  $prepend
+     * @return Autoloader  $this
+     */
+    public function register($prepend = true)
+    {
+        spl_autoload_register([$this, 'autoload'], true, (bool) $prepend);
+        return $this;
+    }
+
+    /**
+     * Unregisters this autoloader from the spl autoload stack
+     * @return Autoloader  $this
+     */
+    public function unregister()
+    {
+        spl_autoload_unregister([$this, 'autoload']);
+        return $this;
+    }
 }

@@ -1,5 +1,5 @@
 <?php
 
-namespace Tests\Assets;
+namespace Spry\Tests;
 
 class Bar {}

@@ -12,14 +12,14 @@ class AutoloaderTest extends PHPUnit_Framework_TestCase
     {
         $this->testData = [
             'namespaces' => [
-                'Spry\Test' => __DIR__ . '/Assets'
+                'Spry\Tests' => __DIR__ . '/Assets'
             ],
             'prefixes' => [
-                'Spry_Test_' => __DIR__ . '/Assets'
+                'Spry_Tests_' => __DIR__ . '/Assets'
             ],
             'classes' => [
-                'Spry\Test\Foo' => __DIR__ . '/Assets/Foo.php',
-                'Spry\Test\Bar' => __DIR__ . '/Assets/Bar.php'
+                'Spry\Tests\Foo' => __DIR__ . '/Assets/Foo.php',
+                'Spry\Tests\Bar' => __DIR__ . '/Assets/Bar.php'
             ]
         ];
     }
@@ -36,17 +36,17 @@ class AutoloaderTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             __DIR__ . '/Assets/Foo.php',
-            $autoloader->resolveFile('Spry\Test\Foo')
+            $autoloader->resolveFile('Spry\Tests\Foo')
         );
 
         $this->assertEquals(
             __DIR__ . '/Assets/Bar.php',
-            $autoloader->resolveFile('Spry\Test\Bar')
+            $autoloader->resolveFile('Spry\Tests\Bar')
         );
 
         $this->assertEquals(
             __DIR__ . '/Assets/Baz/Bar.php',
-            $autoloader->resolveFile('Spry\Test\Baz\Bar')
+            $autoloader->resolveFile('Spry\Tests\Baz\Bar')
         );
     }
 
@@ -57,17 +57,17 @@ class AutoloaderTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             __DIR__ . '/Assets/FooPrefixed.php',
-            $autoloader->resolveFile('Spry_Test_FooPrefixed')
+            $autoloader->resolveFile('Spry_Tests_FooPrefixed')
         );
 
         $this->assertEquals(
             __DIR__ . '/Assets/BarPrefixed.php',
-            $autoloader->resolveFile('Spry_Test_BarPrefixed')
+            $autoloader->resolveFile('Spry_Tests_BarPrefixed')
         );
 
         $this->assertEquals(
             __DIR__ . '/Assets/Baz/BarPrefixed.php',
-            $autoloader->resolveFile('Spry_Test_Baz_BarPrefixed')
+            $autoloader->resolveFile('Spry_Tests_Baz_BarPrefixed')
         );
     }
 
@@ -78,25 +78,25 @@ class AutoloaderTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             __DIR__ . '/Assets/Foo.php',
-            $autoloader->resolveFile('Spry\Test\Foo')
+            $autoloader->resolveFile('Spry\Tests\Foo')
         );
 
         $this->assertEquals(
             __DIR__ . '/Assets/Bar.php',
-            $autoloader->resolveFile('Spry\Test\Bar')
+            $autoloader->resolveFile('Spry\Tests\Bar')
         );
     }
 
     public function testAutoloderIncludesClassFile()
     {
         $autoloader = new Autoloader;
-        $autoloader->setClasses($this->testData['classes'])
+        $autoloader->registerClasses($this->testData['classes'])
                    ->register();
 
-        $foo = new Spry\Test\Foo;
-        $bar = new Spry\Test\Bar;
+        $foo = new Spry\Tests\Foo;
+        $bar = new Spry\Tests\Bar;
 
-        $this->assertTrue($autoloader->isLoaded('Spry\Test\Foo'));
-        $this->assertTrue($autoloader->isLoaded('Spry\Test\Bar'));
+        $this->assertTrue($autoloader->isLoaded('Spry\Tests\Foo'));
+        $this->assertTrue($autoloader->isLoaded('Spry\Tests\Bar'));
     }
 }
