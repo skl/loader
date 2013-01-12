@@ -86,4 +86,17 @@ class AutoloaderTest extends PHPUnit_Framework_TestCase
             $autoloader->resolveFile('Spry\Test\Bar')
         );
     }
+
+    public function testAutoloderIncludesClassFile()
+    {
+        $autoloader = new Autoloader;
+        $autoloader->setClasses($this->testData['classes'])
+                   ->register();
+
+        $foo = new Spry\Test\Foo;
+        $bar = new Spry\Test\Bar;
+
+        $this->assertTrue($autoloader->isLoaded('Spry\Test\Foo'));
+        $this->assertTrue($autoloader->isLoaded('Spry\Test\Bar'));
+    }
 }
