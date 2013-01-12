@@ -43,10 +43,14 @@ $autoloader->setNamespaces($namespaces);
 
 $routing     = new Spry\Router\Routing;
 $httpRequest = new Zend\Http\Request; // e.g. ZF2 namespaced components
+```
 
+```php
 $prefixes = [
     'Zend_' => '/path/to/ZendFramework'
 ];
+
+$autoloader->setPrefixes($prefixes);
 
 $httpRequest = new Zend_Http_Request; // e.g ZF1 prefixed components
 ```
