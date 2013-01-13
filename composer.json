@@ -1,0 +1,13 @@
+{
+    "name": "orno/loader",
+    "description": "Simple autoloader package adhering to PSR-0",
+    "require": {
+        "php": ">=5.4"
+    },
+    "authors": [
+        {
+            "name": "Phil Bennett",
+            "email": "phil@happyaccidents.me"
+        }
+    ]
+}
