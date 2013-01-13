@@ -1,7 +1,7 @@
-spry-php/loader
+orno\loader
 ===
 
-[![Buildi Status](https://travis-ci.org/spry-php/loader.png?branch=master)](https://travis-ci.org/spry-php/loader)
+[![Buildi Status](https://travis-ci.org/orno/loader.png?branch=master)](https://travis-ci.org/orno/loader)
 
 A simple autoloading library adhering to PSR-0.
 
@@ -13,37 +13,37 @@ First of all include the library and instantiate it.
 ```php
 <?php
 
-include '/path/to/vendor/library/Spry/Loader/Autoloader.php';
-$autoloader = new Spry\Loader\Autoloader;
+include '/path/to/vendor/library/Orno/Loader/Autoloader.php';
+$autoloader = new Orno\Loader\Autoloader;
 ```
 
 The best way to use the autoloader for performance reasons is to provide it with a class map.
 
 ```php
 $classMap = [
-    'Spry\Router\Routing'  => '/path/to/Spry/Router/Routing.php',
-    'Spry\Router\RouteMap' => '/path/to/Spry/Router/RouteMap.php'
+    'Orno\Router\Routing'  => '/path/to/Orno/Router/Routing.php',
+    'Orno\Router\RouteMap' => '/path/to/Orno/Router/RouteMap.php'
 ];
 
 $autoloader->registerClasses($classMap)
            ->register();
 
-$routing  = new Spry\Router\Routing;
-$routeMap = new Spry\Router\RouteMap;
+$routing  = new Orno\Router\Routing;
+$routeMap = new Orno\Router\RouteMap;
 ```
 
 Another option would be to set paths to namespaces and/or prefixes.
 
 ```php
 $namespaces = [
-    'Spry' => '/path/to/Spry',
+    'Orno' => '/path/to/Orno',
     'Zend' => '/path/to/ZendFramework'
 ];
 
 $autoloader->registerNamespaces($namespaces)
            ->register();
 
-$routing     = new Spry\Router\Routing;
+$routing     = new Orno\Router\Routing;
 $httpRequest = new Zend\Http\Request; // e.g. ZF2 namespaced components
 ```
 

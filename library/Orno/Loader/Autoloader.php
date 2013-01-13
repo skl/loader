@@ -1,4 +1,4 @@
-<?php namespace Spry\Loader;
+<?php namespace Orno\Loader;
 
 class Autoloader
 {

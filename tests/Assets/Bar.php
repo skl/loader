@@ -1,5 +1,5 @@
 <?php
 
-namespace Spry\Tests;
+namespace Orno\Tests;
 
 class Bar {}
