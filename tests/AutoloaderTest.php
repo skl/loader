@@ -26,8 +26,7 @@ class AutoloaderTest extends PHPUnit_Framework_TestCase
      */
     public function testAutoloaderResolvesNamespacedClasses($namespaces, $prefixes, $classes)
     {
-        $autoloader = new Autoloader;
-        $autoloader->registerNamespaces($namespaces);
+        $autoloader = (new Autoloader)->registerNamespaces($namespaces);
 
         $this->assertSame(
             __DIR__ . '/Assets/Foo.php',
@@ -51,8 +50,7 @@ class AutoloaderTest extends PHPUnit_Framework_TestCase
      */
     public function testAutoloaderResolvesPrefixedClasses($namespaces, $prefixes, $classes)
     {
-        $autoloader = new Autoloader;
-        $autoloader->registerPrefixes($prefixes);
+        $autoloader = (new Autoloader)->registerPrefixes($prefixes);
 
         $this->assertSame(
             __DIR__ . '/Assets/FooPrefixed.php',
@@ -76,8 +74,7 @@ class AutoloaderTest extends PHPUnit_Framework_TestCase
      */
     public function testAutoloaderResolvesRegisteredClass($namespaces, $prefixes, $classes)
     {
-        $autoloader = new Autoloader;
-        $autoloader->registerClasses($classes);
+        $autoloader = (new Autoloader)->registerClasses($classes);
 
         $this->assertSame(
             __DIR__ . '/Assets/Foo.php',
@@ -96,9 +93,9 @@ class AutoloaderTest extends PHPUnit_Framework_TestCase
      */
     public function testAutoloderIncludesClassFile($namespaces, $prefixes, $classes)
     {
-        $autoloader = new Autoloader;
-        $autoloader->registerClasses($classes)
-                   ->register();
+        (new Autoloader)
+            ->registerClasses($classes)
+            ->register();
 
         $this->assertTrue(class_exists('Orno\Tests\Foo'));
         $this->assertTrue(class_exists('Orno\Tests\Bar'));
