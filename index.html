@@ -27,19 +27,13 @@
         </ul>
       </header>
       <section>
-        <p><a href="https://travis-ci.org/orno/loader"><img src="https://travis-ci.org/orno/loader.png?branch=master" alt="Buildi Status"></a></p>
+        <h1>orno\loader</h1>
+
+<p><a href="https://travis-ci.org/orno/loader"><img src="https://travis-ci.org/orno/loader.png?branch=master" alt="Buildi Status"></a></p>
 
 <p>A simple autoloading library adhering to PSR-0.</p>
 
 <h2>Usage</h2>
-
-<p>First of all include the library and instantiate it.</p>
-
-<div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span>
-
-<span class="k">include</span> <span class="s1">'/path/to/vendor/library/Orno/Loader/Autoloader.php'</span><span class="p">;</span>
-<span class="nv">$autoloader</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Orno\Loader\Autoloader</span><span class="p">;</span>
-</pre></div>
 
 <p>The best way to use the autoloader for performance reasons is to provide it with a class map.</p>
 
@@ -48,8 +42,9 @@
     <span class="s1">'Orno\Router\RouteMap'</span> <span class="o">=&gt;</span> <span class="s1">'/path/to/Orno/Router/RouteMap.php'</span>
 <span class="p">];</span>
 
-<span class="nv">$autoloader</span><span class="o">-&gt;</span><span class="na">registerClasses</span><span class="p">(</span><span class="nv">$classMap</span><span class="p">)</span>
-           <span class="o">-&gt;</span><span class="na">register</span><span class="p">();</span>
+<span class="p">(</span><span class="k">new</span> <span class="nx">Orno\Loader\Autoloader</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">registerClasses</span><span class="p">(</span><span class="nv">$classMap</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">register</span><span class="p">();</span>
 
 <span class="nv">$routing</span>  <span class="o">=</span> <span class="k">new</span> <span class="nx">Orno\Router\Routing</span><span class="p">;</span>
 <span class="nv">$routeMap</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Orno\Router\RouteMap</span><span class="p">;</span>
@@ -62,8 +57,9 @@
     <span class="s1">'Zend'</span> <span class="o">=&gt;</span> <span class="s1">'/path/to/ZendFramework'</span>
 <span class="p">];</span>
 
-<span class="nv">$autoloader</span><span class="o">-&gt;</span><span class="na">registerNamespaces</span><span class="p">(</span><span class="nv">$namespaces</span><span class="p">)</span>
-           <span class="o">-&gt;</span><span class="na">register</span><span class="p">();</span>
+<span class="p">(</span><span class="k">new</span> <span class="nx">Orno\Loader\Autoloader</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">registerNamespaces</span><span class="p">(</span><span class="nv">$namespaces</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">register</span><span class="p">();</span>
 
 <span class="nv">$routing</span>     <span class="o">=</span> <span class="k">new</span> <span class="nx">Orno\Router\Routing</span><span class="p">;</span>
 <span class="nv">$httpRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Zend\Http\Request</span><span class="p">;</span> <span class="c1">// e.g. ZF2 namespaced components</span>
@@ -75,8 +71,9 @@
     <span class="s1">'Zend_'</span> <span class="o">=&gt;</span> <span class="s1">'/path/to/ZendFramework'</span>
 <span class="p">];</span>
 
-<span class="nv">$autoloader</span><span class="o">-&gt;</span><span class="na">registerPrefixes</span><span class="p">(</span><span class="nv">$prefixes</span><span class="p">)</span>
-           <span class="o">-&gt;</span><span class="na">register</span><span class="p">();</span>
+<span class="p">(</span><span class="k">new</span> <span class="nx">Orno\Loader\Autoloader</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">registerPrefixes</span><span class="p">(</span><span class="nv">$prefixes</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">register</span><span class="p">();</span>
 
 <span class="nv">$httpRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Zend_Http_Request</span><span class="p">;</span> <span class="c1">// e.g ZF1 prefixed components</span>
 </pre></div>
