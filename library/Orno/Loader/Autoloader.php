@@ -142,7 +142,7 @@ class Autoloader
      */
     public function isLoaded($class)
     {
-        return class_exists($class) || interface_exists($class) || trait_exists($class);
+        return class_exists($class, false) || interface_exists($class, false) || trait_exists($class, false);
     }
 
     /**

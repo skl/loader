@@ -6,97 +6,101 @@ use Orno\Loader\Autoloader;
 
 class AutoloaderTest extends PHPUnit_Framework_TestCase
 {
-    public $testData = [];
-
-    public function setUp()
+    public function provider()
     {
-        $this->testData = [
-            'namespaces' => [
-                'Orno\Tests' => __DIR__ . '/Assets'
-            ],
-            'prefixes' => [
-                'Orno_Tests_' => __DIR__ . '/Assets'
-            ],
-            'classes' => [
-                'Orno\Tests\Foo' => __DIR__ . '/Assets/Foo.php',
-                'Orno\Tests\Bar' => __DIR__ . '/Assets/Bar.php'
+        return [
+            [
+                // namespaces
+                ['Orno\Tests' => __DIR__ . '/Assets'],
+                // prefixes
+                ['Orno_Tests_' => __DIR__ . '/Assets'],
+                // class map
+                ['Orno\Tests\Foo' => __DIR__ . '/Assets/Foo.php', 'Orno\Tests\Bar' => __DIR__ . '/Assets/Bar.php']
             ]
         ];
     }
 
-    public function tearDown()
-    {
-        $this->testData = [];
-    }
-
-    public function testAutoloaderResolvesNamespacedClasses()
+    /**
+     * Test to assert that a file can be resolved from the Namespace registry.
+     * @dataProvider provider
+     */
+    public function testAutoloaderResolvesNamespacedClasses($namespaces, $prefixes, $classes)
     {
         $autoloader = new Autoloader;
-        $autoloader->registerNamespaces($this->testData['namespaces']);
+        $autoloader->registerNamespaces($namespaces);
 
-        $this->assertEquals(
+        $this->assertSame(
             __DIR__ . '/Assets/Foo.php',
             $autoloader->resolveFile('Orno\Tests\Foo')
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             __DIR__ . '/Assets/Bar.php',
             $autoloader->resolveFile('Orno\Tests\Bar')
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             __DIR__ . '/Assets/Baz/Bar.php',
             $autoloader->resolveFile('Orno\Tests\Baz\Bar')
         );
     }
 
-    public function testAutoloaderResolvesPrefixedClasses()
+    /**
+     * Test to assert that a file can be resolved from the Prefix registry.
+     * @dataProvider provider
+     */
+    public function testAutoloaderResolvesPrefixedClasses($namespaces, $prefixes, $classes)
     {
         $autoloader = new Autoloader;
-        $autoloader->registerPrefixes($this->testData['prefixes']);
+        $autoloader->registerPrefixes($prefixes);
 
-        $this->assertEquals(
+        $this->assertSame(
             __DIR__ . '/Assets/FooPrefixed.php',
             $autoloader->resolveFile('Orno_Tests_FooPrefixed')
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             __DIR__ . '/Assets/BarPrefixed.php',
             $autoloader->resolveFile('Orno_Tests_BarPrefixed')
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             __DIR__ . '/Assets/Baz/BarPrefixed.php',
             $autoloader->resolveFile('Orno_Tests_Baz_BarPrefixed')
         );
     }
 
-    public function testAutoloaderResolvesRegisteredClass()
+    /**
+     * Test to assert that a file can be resolved from the Class map registry.
+     * @dataProvider provider
+     */
+    public function testAutoloaderResolvesRegisteredClass($namespaces, $prefixes, $classes)
     {
         $autoloader = new Autoloader;
-        $autoloader->registerClasses($this->testData['classes']);
+        $autoloader->registerClasses($classes);
 
-        $this->assertEquals(
+        $this->assertSame(
             __DIR__ . '/Assets/Foo.php',
             $autoloader->resolveFile('Orno\Tests\Foo')
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             __DIR__ . '/Assets/Bar.php',
             $autoloader->resolveFile('Orno\Tests\Bar')
         );
     }
 
-    public function testAutoloderIncludesClassFile()
+    /**
+     * Test to assert that the file is loaded.
+     * @dataProvider provider
+     */
+    public function testAutoloderIncludesClassFile($namespaces, $prefixes, $classes)
     {
         $autoloader = new Autoloader;
-        $autoloader->registerClasses($this->testData['classes'])
+        $autoloader->registerClasses($classes)
                    ->register();
 
-        $foo = new Orno\Tests\Foo;
-        $bar = new Orno\Tests\Bar;
-
-        $this->assertTrue($autoloader->isLoaded('Orno\Tests\Foo'));
-        $this->assertTrue($autoloader->isLoaded('Orno\Tests\Bar'));
+        $this->assertTrue(class_exists('Orno\Tests\Foo'));
+        $this->assertTrue(class_exists('Orno\Tests\Bar'));
     }
 }
