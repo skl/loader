@@ -8,15 +8,6 @@ A simple autoloading library adhering to PSR-0.
 Usage
 ---
 
-First of all include the library and instantiate it.
-
-```php
-<?php
-
-include '/path/to/vendor/library/Orno/Loader/Autoloader.php';
-$autoloader = new Orno\Loader\Autoloader;
-```
-
 The best way to use the autoloader for performance reasons is to provide it with a class map.
 
 ```php
@@ -25,8 +16,9 @@ $classMap = [
     'Orno\Router\RouteMap' => '/path/to/Orno/Router/RouteMap.php'
 ];
 
-$autoloader->registerClasses($classMap)
-           ->register();
+(new Orno\Loader\Autoloader)
+    ->registerClasses($classMap)
+    ->register();
 
 $routing  = new Orno\Router\Routing;
 $routeMap = new Orno\Router\RouteMap;
@@ -40,8 +32,9 @@ $namespaces = [
     'Zend' => '/path/to/ZendFramework'
 ];
 
-$autoloader->registerNamespaces($namespaces)
-           ->register();
+(new Orno\Loader\Autoloader)
+    ->registerNamespaces($namespaces)
+    ->register();
 
 $routing     = new Orno\Router\Routing;
 $httpRequest = new Zend\Http\Request; // e.g. ZF2 namespaced components
@@ -54,8 +47,9 @@ $prefixes = [
     'Zend_' => '/path/to/ZendFramework'
 ];
 
-$autoloader->registerPrefixes($prefixes)
-           ->register();
+(new Orno\Loader\Autoloader)
+    ->registerPrefixes($prefixes)
+    ->register();
 
 $httpRequest = new Zend_Http_Request; // e.g ZF1 prefixed components
 ```
