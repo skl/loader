@@ -19,11 +19,9 @@ The best way to use the autoloader for performance reasons is to provide it with
 
     $routing  = new Orno\Router\Routing;
     $routeMap = new Orno\Router\RouteMap;
-    ```
 
-    Another option would be to set paths to namespaces and/or prefixes.
+Another option would be to set paths to namespaces and/or prefixes.
 
-    ```php
     $namespaces = [
         'Orno' => '/path/to/Orno',
         'Zend' => '/path/to/ZendFramework'
