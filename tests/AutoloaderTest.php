@@ -1,6 +1,6 @@
 <?php
 
-require realpath(__DIR__ . '/../library/Orno/Loader/Autoloader.php');
+require realpath(__DIR__ . '/../src/Orno/Loader/Autoloader.php');
 
 use Orno\Loader\Autoloader;
 
