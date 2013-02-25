@@ -1,21 +1,23 @@
 <?php
 
+namespace Orno\LoaderTest;
+
 require realpath(__DIR__ . '/../src/Orno/Loader/Autoloader.php');
 
 use Orno\Loader\Autoloader;
 
-class AutoloaderTest extends PHPUnit_Framework_TestCase
+class AutoloaderTest extends \PHPUnit_Framework_TestCase
 {
     public function provider()
     {
         return [
             [
                 // namespaces
-                ['Orno\Tests' => __DIR__ . '/Assets'],
+                ['Orno\Tests' => __DIR__ . '/assets'],
                 // prefixes
-                ['Orno_Tests_' => __DIR__ . '/Assets'],
+                ['Orno_Tests_' => __DIR__ . '/assets'],
                 // class map
-                ['Orno\Tests\Foo' => __DIR__ . '/Assets/Foo.php', 'Orno\Tests\Bar' => __DIR__ . '/Assets/Bar.php']
+                ['Orno\Tests\Foo' => __DIR__ . '/assets/Orno/Tests/Foo.php', 'Orno\Tests\Bar' => __DIR__ . '/assets/Orno/Tests/Bar.php']
             ]
         ];
     }
@@ -29,17 +31,17 @@ class AutoloaderTest extends PHPUnit_Framework_TestCase
         $autoloader = (new Autoloader)->registerNamespaces($namespaces);
 
         $this->assertSame(
-            __DIR__ . '/Assets/Foo.php',
+            __DIR__ . '/assets/Orno/Tests/Foo.php',
             $autoloader->resolveFile('Orno\Tests\Foo')
         );
 
         $this->assertSame(
-            __DIR__ . '/Assets/Bar.php',
+            __DIR__ . '/assets/Orno/Tests/Bar.php',
             $autoloader->resolveFile('Orno\Tests\Bar')
         );
 
         $this->assertSame(
-            __DIR__ . '/Assets/Baz/Bar.php',
+            __DIR__ . '/assets/Orno/Tests/Baz/Bar.php',
             $autoloader->resolveFile('Orno\Tests\Baz\Bar')
         );
     }
@@ -53,17 +55,17 @@ class AutoloaderTest extends PHPUnit_Framework_TestCase
         $autoloader = (new Autoloader)->registerPrefixes($prefixes);
 
         $this->assertSame(
-            __DIR__ . '/Assets/FooPrefixed.php',
+            __DIR__ . '/assets/Orno/Tests/FooPrefixed.php',
             $autoloader->resolveFile('Orno_Tests_FooPrefixed')
         );
 
         $this->assertSame(
-            __DIR__ . '/Assets/BarPrefixed.php',
+            __DIR__ . '/assets/Orno/Tests/BarPrefixed.php',
             $autoloader->resolveFile('Orno_Tests_BarPrefixed')
         );
 
         $this->assertSame(
-            __DIR__ . '/Assets/Baz/BarPrefixed.php',
+            __DIR__ . '/assets/Orno/Tests/Baz/BarPrefixed.php',
             $autoloader->resolveFile('Orno_Tests_Baz_BarPrefixed')
         );
     }
@@ -77,12 +79,12 @@ class AutoloaderTest extends PHPUnit_Framework_TestCase
         $autoloader = (new Autoloader)->registerClasses($classes);
 
         $this->assertSame(
-            __DIR__ . '/Assets/Foo.php',
+            __DIR__ . '/assets/Orno/Tests/Foo.php',
             $autoloader->resolveFile('Orno\Tests\Foo')
         );
 
         $this->assertSame(
-            __DIR__ . '/Assets/Bar.php',
+            __DIR__ . '/assets/Orno/Tests/Bar.php',
             $autoloader->resolveFile('Orno\Tests\Bar')
         );
     }

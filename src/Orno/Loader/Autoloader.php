@@ -106,9 +106,7 @@ class Autoloader
                 continue;
             }
 
-            $class = str_replace($namespace, null, $class);
-
-            return rtrim($path, '/') . $this->classToFile($class);
+            return rtrim($path, '/') . DIRECTORY_SEPARATOR . $this->classToFile($class);
         }
 
         // loop through the prefix registry
@@ -118,8 +116,6 @@ class Autoloader
             if (substr($class, 0, $length) !== $prefix) {
                 continue;
             }
-
-            $class = str_replace($prefix, null, $class);
 
             return rtrim($path, '/') . DIRECTORY_SEPARATOR . $this->classToFile($class);
         }
