@@ -10,8 +10,8 @@ The best way to use the autoloader for performance reasons is to provide it with
 knows the exact location of any files it requests.
 
     $classMap = [
-        'Orno\Router\Routing'  => '/path/to/Orno/Router/Routing.php',
-        'Orno\Router\RouteMap' => '/path/to/Orno/Router/RouteMap.php'
+        'Orno\Mvc\Route\Router' => '/path/to/Orno/Mvc/Route/Router.php',
+        'Orno\Mvc\Route\Map'    => '/path/to/Orno/Mvc/Route/Map.php'
     ];
 
     (new Orno\Loader\Autoloader)
