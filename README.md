@@ -1,4 +1,4 @@
-# Orno\Loader - PHP Autoloading Adhering to PSR-0
+# Orno\Loader - PHP Autoloading Component Adhering to PSR-0
 
 [![Buildi Status](https://travis-ci.org/orno/loader.png?branch=master)](https://travis-ci.org/orno/loader)
 
