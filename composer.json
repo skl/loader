@@ -7,7 +7,14 @@
     "authors": [
         {
             "name": "Phil Bennett",
-            "email": "phil@happyaccidents.me"
+            "email": "hello@happyaccidents.me"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-0": {
+            "Orno\\Loader": "src/",
+            "Orno\\Tests": "tests/assets/"
+        }
+    },
+    "minimum-stability": "dev"
 }
