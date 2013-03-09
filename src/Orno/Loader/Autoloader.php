@@ -21,6 +21,26 @@ class Autoloader
     protected $classes = [];
 
     /**
+     * Constructor
+     *
+     * @param array $config
+     */
+    public function __construct(array $config = [])
+    {
+        if (isset($config['namespaces'])) {
+            $this->registerNamespaces($config['namespaces']);
+        }
+
+        if (isset($config['prefixes'])) {
+            $this->registerPrefixes($config['prefixes']);
+        }
+
+        if (isset($config['classes'])) {
+            $this->registerClasses[$config['classes']];
+        }
+    }
+
+    /**
      * Register a namespace => path pair with the autoloader
      * @param  array       $namespaces
      * @return Autoloader  $this
