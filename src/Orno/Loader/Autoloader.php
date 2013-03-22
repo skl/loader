@@ -4,18 +4,21 @@ class Autoloader
 {
     /**
      * Array of registered namespace => path pairs
+     *
      * @var array
      */
     protected $namespaces = [];
 
     /**
      * Array of registered prefix => path pairs
+     *
      * @var array
      */
     protected $prefixes = [];
 
     /**
      * Array of registered class locations
+     *
      * @var array
      */
     protected $classes = [];
@@ -42,8 +45,9 @@ class Autoloader
 
     /**
      * Register a namespace => path pair with the autoloader
-     * @param  array       $namespaces
-     * @return Autoloader  $this
+     *
+     * @param  array $namespaces
+     * @return Orno\Loader\Autoloader
      */
     public function registerNamespaces(array $namespaces)
     {
@@ -55,8 +59,9 @@ class Autoloader
 
     /**
      * Register a prefix => path pair with the autoloader
-     * @param  array  $prefixes
-     * @return Autoloader  $this
+     *
+     * @param  array $prefixes
+     * @return Orno\Loader\Autoloader
      */
     public function registerPrefixes(array $prefixes)
     {
@@ -68,8 +73,9 @@ class Autoloader
 
     /**
      * Register a direct path to a class with the autoloader
-     * @param  array  $classes
-     * @return Autoloader  $this
+     *
+     * @param  array $classes
+     * @return Orno\Loader\Autoloader
      */
     public function registerClasses(array $classes)
     {
@@ -81,6 +87,7 @@ class Autoloader
 
     /**
      * Returns the namespace registry array
+     *
      * @return array
      */
     public function getNamespaces()
@@ -90,6 +97,7 @@ class Autoloader
 
     /**
      * Returns the prefix registry array
+     *
      * @return array
      */
     public function getPrefixes()
@@ -99,6 +107,7 @@ class Autoloader
 
     /**
      * Returns the class registry array
+     *
      * @return array
      */
     public function getClasses()
@@ -108,7 +117,8 @@ class Autoloader
 
     /**
      * Resolves a class file from a provided class
-     * @param  string  $class
+     *
+     * @param  string $class
      * @return string
      */
     public function resolveFile($class)
@@ -143,7 +153,8 @@ class Autoloader
 
     /**
      * Converts a class name to a filename
-     * @param  string  $class
+     *
+     * @param  string $class
      * @return string
      */
     public function classToFile($class)
@@ -153,7 +164,8 @@ class Autoloader
 
     /**
      * Checks to see if a class is already loaded
-     * @param  string  $class
+     *
+     * @param  string $class
      * @return boolean
      */
     public function isLoaded($class)
@@ -163,7 +175,8 @@ class Autoloader
 
     /**
      * Autoload method to be registered with the spl autoload stack
-     * @param  string  $class
+     *
+     * @param  string $class
      * @return void
      */
     public function autoload($class)
@@ -183,8 +196,9 @@ class Autoloader
 
     /**
      * Registers this autoloader with the spl autoload stack
-     * @param  boolean  $prepend
-     * @return Autoloader  $this
+     *
+     * @param  boolean $prepend
+     * @return Orno\Loader\Autoloader
      */
     public function register($prepend = true)
     {
@@ -194,7 +208,8 @@ class Autoloader
 
     /**
      * Unregisters this autoloader from the spl autoload stack
-     * @return Autoloader  $this
+     *
+     * @return Orno\Loader\Autoloader
      */
     public function unregister()
     {
