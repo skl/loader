@@ -1,5 +1,17 @@
-<?php namespace Orno\Loader;
+<?php
+/**
+ * The Orno Component Library
+ *
+ * @author  Phil Bennett @philipobenito
+ * @license http://www.wtfpl.net/txt/copying/ WTFPL
+ */
+namespace Orno\Loader;
 
+/**
+ * Autoloader
+ *
+ * An autoloader object allowing a project to adhere to PSR-0
+ */
 class Autoloader
 {
     /**
@@ -44,10 +56,12 @@ class Autoloader
     }
 
     /**
+     * Register Namespaces
+     *
      * Register a namespace => path pair with the autoloader
      *
      * @param  array $namespaces
-     * @return Orno\Loader\Autoloader
+     * @return \Orno\Loader\Autoloader
      */
     public function registerNamespaces(array $namespaces)
     {
@@ -58,10 +72,12 @@ class Autoloader
     }
 
     /**
+     * Register Prefixes
+     *
      * Register a prefix => path pair with the autoloader
      *
      * @param  array $prefixes
-     * @return Orno\Loader\Autoloader
+     * @return \Orno\Loader\Autoloader
      */
     public function registerPrefixes(array $prefixes)
     {
@@ -72,10 +88,12 @@ class Autoloader
     }
 
     /**
+     * Register Classes
+     *
      * Register a direct path to a class with the autoloader
      *
      * @param  array $classes
-     * @return Orno\Loader\Autoloader
+     * @return \Orno\Loader\Autoloader
      */
     public function registerClasses(array $classes)
     {
@@ -86,6 +104,8 @@ class Autoloader
     }
 
     /**
+     * Get Namespaces
+     *
      * Returns the namespace registry array
      *
      * @return array
@@ -96,6 +116,8 @@ class Autoloader
     }
 
     /**
+     * Get Prefixes
+     *
      * Returns the prefix registry array
      *
      * @return array
@@ -106,6 +128,8 @@ class Autoloader
     }
 
     /**
+     * Get Classes
+     *
      * Returns the class registry array
      *
      * @return array
@@ -116,6 +140,8 @@ class Autoloader
     }
 
     /**
+     * Resolve File
+     *
      * Resolves a class file from a provided class
      *
      * @param  string $class
@@ -152,6 +178,8 @@ class Autoloader
     }
 
     /**
+     * Class to File
+     *
      * Converts a class name to a filename
      *
      * @param  string $class
@@ -163,6 +191,8 @@ class Autoloader
     }
 
     /**
+     * Is Loaded?
+     *
      * Checks to see if a class is already loaded
      *
      * @param  string $class
@@ -174,6 +204,8 @@ class Autoloader
     }
 
     /**
+     * Autoload
+     *
      * Autoload method to be registered with the spl autoload stack
      *
      * @param  string $class
@@ -195,6 +227,8 @@ class Autoloader
     }
 
     /**
+     * Register
+     *
      * Registers this autoloader with the spl autoload stack
      *
      * @param  boolean $prepend
@@ -207,6 +241,8 @@ class Autoloader
     }
 
     /**
+     * Unregister
+     *
      * Unregisters this autoloader from the spl autoload stack
      *
      * @return Orno\Loader\Autoloader
